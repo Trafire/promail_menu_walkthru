@@ -5,9 +5,18 @@ import requests
 
 
 class Meal:
-    '''A meal you can cook.'''
+    """A meal you can cook."""
 
-    def __init__(self, str_meal:str, str_category, str_instructions, str_meal_thumb, str_youtube, ingredients, **kwargs):
+    def __init__(
+        self,
+        str_meal: str,
+        str_category,
+        str_instructions,
+        str_meal_thumb,
+        str_youtube,
+        ingredients,
+        **kwargs,
+    ):
         """Initializes meal class"""
         self.youtube = str_youtube
         self.thumbnail = str_meal_thumb
@@ -39,15 +48,15 @@ class Api:
     def combine_ingredients(self, meal_data) -> List[tuple]:
         """Adds an 'ingredients' property to each meal in meal_data.
 
-            ingredients are in the form (ingredient, amount).
+        ingredients are in the form (ingredient, amount).
         """
         for data in meal_data:
             ingredients = []
             for i in range(1, 40):
-                ingredient = data.get(f"str_ingredient{i}", '')
+                ingredient = data.get(f"str_ingredient{i}", "")
                 if ingredient:
-                    ingredients.append((ingredient, data.get(f"str_measure{i}", '')))
-            data['ingredients'] = ingredients
+                    ingredients.append((ingredient, data.get(f"str_measure{i}", "")))
+            data["ingredients"] = ingredients
         return meal_data
 
     @staticmethod
@@ -62,7 +71,7 @@ class Api:
             new_dict = {}
             formatted_list.append(new_dict)
             for key, value in data.items():
-                new_key = re.sub(r'(?<!^)(?=[A-Z])', '_', key).lower()
+                new_key = re.sub(r"(?<!^)(?=[A-Z])", "_", key).lower()
                 new_dict[new_key] = value
 
         return formatted_list

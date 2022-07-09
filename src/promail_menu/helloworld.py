@@ -10,11 +10,11 @@ AUTHORIZED_EMAILS = ("my_email@example.com", "someone_else@example.com")
 # set up client
 client = GmailClient(MENU_EMAIL, credentials="../.credentials/gmail_credentials.json")
 
-template = HelloWorld({"name":"Antoine"})
+template = HelloWorld({"name": "Antoine"})
 
 client.send_email(
     recipients="my_email@example.com",
     subject="Hello from Promail",
     htmltext=template.html,
-    plaintext=template.plaintext
+    plaintext=template.plaintext,
 )
