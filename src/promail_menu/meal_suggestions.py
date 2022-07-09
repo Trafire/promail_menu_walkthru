@@ -30,9 +30,7 @@ def create_suggestion_template(n: int = 5) -> PromailTemplate:
             {
                 "thumbnail": meal.thumbnail,
                 "title": meal.name,
-                "description": ", ".join(
-                    x for x, y in meal.ingredients
-                ),
+                "description": ", ".join(x for x, y in meal.ingredients),
             }
         )
     template_data = {
@@ -46,12 +44,15 @@ def create_suggestion_template(n: int = 5) -> PromailTemplate:
     }
     return ImageDescriptionTemplate(template_data)
 
-@client.register( name = "suggestions", subject="meal suggestions", sender=(AUTHORIZED_EMAILS,))
+
+@client.register(
+    name="suggestions", subject="meal suggestions", sender=(AUTHORIZED_EMAILS,)
+)
 def meal_suggestions(email):
     template = create_suggestion_template(5)
     client.send_email(
         recipients=email.sender,
         subject="Re: Meal Suggestions",
         htmltext=template.html,
-        plaintext=template.plaintext
+        plaintext=template.plaintext,
     )

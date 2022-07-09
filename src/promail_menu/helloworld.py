@@ -13,7 +13,9 @@ AUTHORIZED_EMAILS = ("antoinewood@gmail.com",)
 client = GmailClient(MENU_EMAIL, credentials="../.credentials/gmail_credentials.json")
 
 
-@client.register(name="helloworld", subject="Hello Promail", sender=(AUTHORIZED_EMAILS,))
+@client.register(
+    name="helloworld", subject="Hello Promail", sender=(AUTHORIZED_EMAILS,)
+)
 def reply_hello(email):
     template = HelloWorld({"name": "Antoine"})
     client.send_email(
