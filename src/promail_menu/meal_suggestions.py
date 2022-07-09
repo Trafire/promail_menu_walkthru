@@ -1,5 +1,7 @@
 # src/promail_menu/meal_suggestions.py
 """Meal Recommendations"""
+import time
+
 from promail.clients import GmailClient
 from promail_template.template import PromailTemplate
 from promail_template.templates.full import ImageDescriptionTemplate
@@ -9,7 +11,7 @@ from promail_template.templates.full import HelloWorld
 from src.promail_menu.recipes import Api
 
 MENU_EMAIL = "promail.tests@gmail.com"
-AUTHORIZED_EMAILS = ("my_email@example.com", "someone_else@example.com")
+AUTHORIZED_EMAILS = ("antoinewood@gmail.com",)
 
 # set up client
 client = GmailClient(MENU_EMAIL, credentials="../.credentials/gmail_credentials.json")
@@ -46,13 +48,18 @@ def create_suggestion_template(n: int = 5) -> PromailTemplate:
 
 
 @client.register(
-    name="suggestions", subject="meal suggestions", sender=(AUTHORIZED_EMAILS,)
+    name="suggestions", subject="Suggest Meal", sender=(AUTHORIZED_EMAILS,)
 )
 def meal_suggestions(email):
     template = create_suggestion_template(5)
     client.send_email(
         recipients=email.sender,
-        subject="Re: Meal Suggestions",
+        subject="Re: Meal Recommendations",
         htmltext=template.html,
         plaintext=template.plaintext,
     )
+
+
+while True:
+    client.process()
+    time.sleep(1)
