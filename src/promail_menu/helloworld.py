@@ -5,7 +5,6 @@ from promail_template.templates.full import HelloWorld
 
 # constants
 MENU_EMAIL = "promail.tests@gmail.com"
-AUTHORIZED_EMAILS = ("my_email@example.com", "someone_else@example.com")
 
 # set up client
 client = GmailClient(MENU_EMAIL, credentials="../.credentials/gmail_credentials.json")
