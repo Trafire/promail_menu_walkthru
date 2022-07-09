@@ -1,7 +1,7 @@
 # src/promail_menu/meal_suggestions.py
 """Meal Recommendations"""
 from promail.clients import GmailClient
-from promail_template.templates.full import HelloWorld
+from promail_template.templates.full import ImageDescriptionTemplate
 
 # constants
 MENU_EMAIL = "promail.tests@gmail.com"
