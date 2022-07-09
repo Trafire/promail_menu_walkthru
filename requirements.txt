@@ -1,0 +1,3 @@
+promail==0.6.0
+promail-template
+requests
